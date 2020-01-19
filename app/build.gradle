@@ -43,6 +43,7 @@ dependencies {
     def recycler_version = '1.1.0'
     def viewmodel_version = '2.2.0-rc03'
     def compose_version = '0.1.0-dev03'
+    def koin_version = '2.0.1'
     def arrow_version = '0.10.4'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -55,6 +56,10 @@ dependencies {
     implementation "androidx.ui:ui-layout:$compose_version"
     implementation "androidx.ui:ui-material:$compose_version"
     implementation "androidx.ui:ui-tooling:$compose_version"
+
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     implementation "io.arrow-kt:arrow-fx:$arrow_version"
     implementation "io.arrow-kt:arrow-syntax:$arrow_version"

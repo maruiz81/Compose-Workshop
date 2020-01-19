@@ -16,7 +16,7 @@ class BooksViewModel(private val getBooks: GetBooks) : BaseViewModel() {
     fun navigateToDetail(): LiveData<Event<BookPresentationModel>> = navigateToDetail
 
     fun requestBooks() =
-        getBooks(Unit, viewModelScope) { it.fold(::handleFailure, ::handleSuccess) }
+        getBooks { it.fold(::handleFailure, ::handleSuccess) }
 
     fun bookSelected(book: BookPresentationModel) {
         navigateToDetail.value = Event(book)
