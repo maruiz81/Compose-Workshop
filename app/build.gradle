@@ -29,7 +29,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-  
+
+    buildFeatures {
+        compose true
+    }
 }
 
 dependencies {
@@ -41,6 +44,7 @@ dependencies {
     def viewmodel_version = '2.2.0-rc03'
     def koin_version = '2.0.1'
     def arrow_version = '0.10.4'
+    def compose_version = '0.1.0-dev03'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$appcompat_version"
@@ -51,6 +55,11 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    implementation "androidx.ui:ui-framework:$compose_version"
+    implementation "androidx.ui:ui-layout:$compose_version"
+    implementation "androidx.ui:ui-material:$compose_version"
+    implementation "androidx.ui:ui-tooling:$compose_version"
 
     implementation "io.arrow-kt:arrow-fx:$arrow_version"
     implementation "io.arrow-kt:arrow-syntax:$arrow_version"
