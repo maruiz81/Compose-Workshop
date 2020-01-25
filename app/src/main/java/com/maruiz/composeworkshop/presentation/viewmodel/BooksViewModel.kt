@@ -12,9 +12,6 @@ class BooksViewModel(private val getBooks: GetBooks) : BaseViewModel() {
     private val books = MutableLiveData<List<BookPresentationModel>>()
     fun observeBooks(): LiveData<List<BookPresentationModel>> = books
 
-    private val navigateToDetail = MutableLiveData<Event<BookPresentationModel>>()
-    fun navigateToDetail(): LiveData<Event<BookPresentationModel>> = navigateToDetail
-
     fun requestBooks() =
         getBooks { it.fold(::handleFailure, ::handleSuccess) }
 
