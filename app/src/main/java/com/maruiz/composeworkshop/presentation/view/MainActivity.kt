@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
 import androidx.ui.core.Text
 import androidx.ui.core.setContent
+import androidx.ui.graphics.Color
+import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     fun Hello() {
-        Text("Hello, World!")
+        Text("Hello, World!", style = TextStyle(color = Color.Blue))
     }
 
     @Preview
