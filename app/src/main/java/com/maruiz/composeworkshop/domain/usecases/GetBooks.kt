@@ -12,8 +12,8 @@ class GetBooks(private val bookRepository: BookRepository) {
                 BookModelDomainModel(
                     it.title,
                     it.author,
+                    it.firstPublished,
                     it.shortSynopsis,
-                    it.synopsis,
                     it.image
                 )
             }
