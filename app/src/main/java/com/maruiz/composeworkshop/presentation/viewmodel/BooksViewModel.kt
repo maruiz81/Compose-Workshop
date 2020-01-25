@@ -15,10 +15,6 @@ class BooksViewModel(private val getBooks: GetBooks) : BaseViewModel() {
     fun requestBooks() =
         getBooks { it.fold(::handleFailure, ::handleSuccess) }
 
-    fun bookSelected(book: BookPresentationModel) {
-        navigateToDetail.value = Event(book)
-    }
-
     private fun handleSuccess(books: List<BookModelDomainModel>) {
         this.books.value =
             books.map {
