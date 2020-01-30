@@ -44,7 +44,7 @@ dependencies {
     def viewmodel_version = '2.2.0'
     def koin_version = '2.0.1'
     def arrow_version = '0.10.4'
-    def compose_version = '0.1.0-dev03'
+    def compose_version = '0.1.0-dev04'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$appcompat_version"
