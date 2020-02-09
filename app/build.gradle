@@ -41,6 +41,11 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
+    def appcompat_version = '1.1.0'
+    def viewmodel_version = '2.2.0'
+    def koin_version = '2.0.1'
+    def arrow_version = '0.10.4'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel_version"
@@ -54,7 +59,5 @@ dependencies {
     implementation "androidx.ui:ui-material:$compose_version"
     implementation "androidx.ui:ui-tooling:$compose_version"
 
-    implementation "io.arrow-kt:arrow-fx:$arrow_version"
     implementation "io.arrow-kt:arrow-syntax:$arrow_version"
-    implementation "io.arrow-kt:arrow-fx:$arrow_version"
 }
