@@ -22,7 +22,8 @@ class BooksViewModel(private val getBooks: GetBooks) : BaseViewModel() {
                     it.date,
                     it.shortSynopsis,
                     it.synopsis,
-                    it.image
+                    it.image,
+                    it.genres
                 )
             }
     }
