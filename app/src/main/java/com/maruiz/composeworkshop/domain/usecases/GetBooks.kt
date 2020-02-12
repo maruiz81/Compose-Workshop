@@ -10,11 +10,12 @@ class GetBooks(private val bookRepository: BookRepository) {
         onResult(bookRepository.getBooks().map { books ->
             books.map {
                 BookModelDomainModel(
-                    it.title,
-                    it.author,
-                    it.firstPublished,
-                    it.shortSynopsis,
-                    it.image
+                    title = it.title,
+                    author = it.author,
+                    date = it.firstPublished,
+                    shortSynopsis = it.shortSynopsis,
+                    image = it.image,
+                    genres = it.genres
                 )
             }
         })

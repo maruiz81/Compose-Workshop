@@ -6,5 +6,6 @@ class BookModelDomainModel(
     val date: String,
     val shortSynopsis: String = "",
     val synopsis: String = "",
-    val image: String = ""
+    val image: String = "",
+    val genres: List<String>
 )
