@@ -7,5 +7,5 @@ data class BookPresentationModel(
     val shortSynopsis: String = "",
     val synopsis: String = "",
     val image: String = "",
-    val genres: List<String>
+    val genres: List<String> = emptyList()
 )
