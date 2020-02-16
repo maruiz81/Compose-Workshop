@@ -1,7 +1,5 @@
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.maruiz.books.presentation.utils.Event
 import com.maruiz.composeworkshop.domain.model.BookModelDomainModel
 import com.maruiz.composeworkshop.domain.usecases.GetBooks
 import com.maruiz.composeworkshop.presentation.presentationmodel.BookPresentationModel
@@ -21,9 +19,11 @@ class BooksViewModel(private val getBooks: GetBooks) : BaseViewModel() {
                 BookPresentationModel(
                     it.title,
                     it.author,
+                    it.date,
                     it.shortSynopsis,
                     it.synopsis,
                     it.image,
+                    it.score,
                     it.genres
                 )
             }

@@ -15,6 +15,7 @@ class GetBooks(private val bookRepository: BookRepository) {
                     date = it.firstPublished,
                     shortSynopsis = it.shortSynopsis,
                     image = it.image,
+                    score = it.score,
                     genres = it.genres
                 )
             }
