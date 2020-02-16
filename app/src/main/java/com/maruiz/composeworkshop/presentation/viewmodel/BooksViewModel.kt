@@ -23,6 +23,7 @@ class BooksViewModel(private val getBooks: GetBooks) : BaseViewModel() {
                     it.shortSynopsis,
                     it.synopsis,
                     it.image,
+                    it.score,
                     it.genres
                 )
             }
