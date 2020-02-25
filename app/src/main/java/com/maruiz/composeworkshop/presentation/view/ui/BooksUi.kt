@@ -3,7 +3,7 @@ package com.maruiz.composeworkshop.presentation.view.ui
 import androidx.annotation.DrawableRes
 import androidx.compose.Composable
 import androidx.ui.core.Text
-import androidx.ui.core.WithDensity
+import androidx.ui.foundation.DrawImage
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.vector.DrawVector
 import androidx.ui.layout.*
@@ -11,6 +11,7 @@ import androidx.ui.material.Divider
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.Typography
 import androidx.ui.material.surface.Surface
+import androidx.ui.res.imageResource
 import androidx.ui.res.stringResource
 import androidx.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
@@ -27,11 +28,28 @@ fun PaintBooks(booksState: BooksState) {
         val typography = MaterialTheme.typography()
         Column {
             booksState.books.forEach {
-                MainSection(it.title, it.author, it.date, it.score, typography)
+                Surface {
+                    Row {
+                        CoverImage()
+                        MainSection(it.title, it.author, it.date, it.score, typography)
+                    }
+                }
                 SynopsisSection(it.shortSynopsis, typography)
                 GenresSection(it.genres, typography)
             }
         }
+    }
+}
+
+@Composable
+private fun CoverImage() {
+    val image = imageResource(R.drawable.war_and_peace)
+    val ratio = image.width.toFloat() / image.height.toFloat()
+    Container(
+        modifier = LayoutHeight.Constrain(0.dp, 120.dp)
+                + LayoutAspectRatio(aspectRatio = ratio)
+    ) {
+        DrawImage(image)
     }
 }
 
@@ -43,28 +61,25 @@ private fun MainSection(
     score: Float,
     typography: Typography
 ) {
-    Surface {
-        Row(modifier = LayoutWidth.Fill) {
-            Column(modifier = LayoutPadding(16.dp)) {
-                Text(title, style = typography.h5)
-                Text(author, style = typography.h6)
-                Text(date, style = typography.body1)
+    Row(modifier = LayoutWidth.Fill) {
+        Column(modifier = LayoutPadding(16.dp)) {
+            Text(title, style = typography.h5)
+            Text(author, style = typography.h6)
+            Text(date, style = typography.body1)
+        }
+        Column(modifier = LayoutPadding(16.dp)) {
+            Row {
+                Text("Score:")
+                Text(score.toString())
             }
-            Column(modifier = LayoutPadding(16.dp)) {
-                Row {
-                    Text("Score:")
-                    Text(score.toString())
+            Row {
+                (1..score.toInt()).forEach {
+                    SimpleVector(R.drawable.ic_baseline_star_24, starColor)
                 }
-                Row {
-                    (1..score.toInt()).forEach {
-                        SimpleVector(R.drawable.ic_baseline_star_24, starColor)
-                    }
-                    if ((score - score.toInt()) > 0)
-                        SimpleVector(R.drawable.ic_baseline_star_half_24, starColor)
-                }
+                if ((score - score.toInt()) > 0)
+                    SimpleVector(R.drawable.ic_baseline_star_half_24, starColor)
             }
         }
-
     }
 }
 
@@ -72,13 +87,11 @@ private fun MainSection(
 @Composable
 fun SimpleVector(@DrawableRes id: Int, tint: Color = Color.Transparent) {
     val vector = vectorResource(id)
-    WithDensity {
-        Container(
-            width = vector.defaultWidth,
-            height = vector.defaultHeight
-        ) {
-            DrawVector(vector, tint)
-        }
+    Container(
+        width = vector.defaultWidth,
+        height = vector.defaultHeight
+    ) {
+        DrawVector(vector, tint)
     }
 }
 
