@@ -6,11 +6,9 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.material.lightColorPalette
 
 
-private val clearBlue = Color(0xFFBBE1FA)
 private val darkBlue = Color(0xFF3282B8)
 private val themeColors = lightColorPalette(
-    primary = darkBlue,
-    surface = clearBlue
+    primary = darkBlue
 )
 
 @Composable

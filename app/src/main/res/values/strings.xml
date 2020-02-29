@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Compose Workshop</string>
     <string name="genres_title">Genres</string>
+    <string name="score_title">Score:</string>
 </resources>
