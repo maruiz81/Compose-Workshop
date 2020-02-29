@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.ui.core.setContent
 import com.maruiz.composeworkshop.presentation.view.states.BooksState
 import com.maruiz.composeworkshop.presentation.view.ui.PaintBooks
+import com.maruiz.composeworkshop.presentation.view.ui.PaintList
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            PaintBooks(booksState)
+            PaintList(booksState)
         }
 
         getBooks()

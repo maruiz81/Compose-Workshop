@@ -3,8 +3,8 @@ package com.maruiz.composeworkshop.presentation.view.ui
 import androidx.annotation.DrawableRes
 import androidx.compose.Composable
 import androidx.ui.core.Text
+import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.DrawImage
-import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.vector.DrawVector
@@ -23,35 +23,35 @@ import com.maruiz.composeworkshop.presentation.presentationmodel.BookPresentatio
 import com.maruiz.composeworkshop.presentation.view.states.BooksState
 
 @Composable
-fun PaintBooks(booksState: BooksState) {
+fun PaintList(booksState: BooksState) {
     MyAppTheme {
-        val typography = MaterialTheme.typography()
-        VerticalScroller {
-            Column() {
-                booksState.books.forEach {
-                    Surface(
-                        shape = RoundedCornerShape(8.dp),
-                        elevation = 8.dp,
-                        modifier = LayoutPadding(8.dp)
-                    ) {
-                        Column {
-                            Row(modifier = LayoutWidth.Fill) {
-                                CoverImage(it.image)
-                                MainSection(it.title, it.author, it.date, typography)
-                            }
-                            SynopsisSection(it.shortSynopsis, typography)
-                            Row {
-                                //Layout flexible can't be in nested function, needs to be in the same
-                                //function than Row
-                                Column(modifier = LayoutPadding(8.dp) + LayoutFlexible(1f)) {
-                                    PaingGenreTitle(typography)
-                                    PaintGenres(it, typography)
-                                }
-                                PainScore(it.score, typography)
-                            }
-                        }
-                    }
+        AdapterList(data = booksState.books) { item ->
+            PaintBooks(item, MaterialTheme.typography())
+        }
+    }
+}
+
+@Composable
+fun PaintBooks(book: BookPresentationModel, typography: Typography) {
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        elevation = 8.dp,
+        modifier = LayoutPadding(8.dp)
+    ) {
+        Column {
+            Row(modifier = LayoutWidth.Fill) {
+                CoverImage(book.image)
+                MainSection(book.title, book.author, book.date, typography)
+            }
+            SynopsisSection(book.shortSynopsis, typography)
+            Row {
+                //Layout flexible can't be in nested function, needs to be in the same
+                //function than Row
+                Column(modifier = LayoutPadding(8.dp) + LayoutFlexible(1f)) {
+                    PaingGenreTitle(typography)
+                    PaintGenres(book, typography)
                 }
+                PainScore(book.score, typography)
             }
         }
     }
@@ -148,7 +148,7 @@ private fun SynopsisSection(synopsis: String, typography: Typography) {
 @Preview
 @Composable
 fun preview() {
-    PaintBooks(
+    PaintList(
         BooksState(
             previewBook()
         )
@@ -161,6 +161,11 @@ private fun previewBook() =
             "Don Quixote", "Miguel de Cervantes",
             "1605", shortSynopsis = "Bla bla bla",
             score = 3.5f,
+            genres = listOf("genre 1", "genre 2")
+        ),
+        BookPresentationModel(
+            "Odissey", "Homer", "-2000",
+            shortSynopsis = "Bla bla bla", score = 4f,
             genres = listOf("genre 1", "genre 2")
         )
     )
