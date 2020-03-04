@@ -30,6 +30,12 @@ android {
         jvmTarget = '1.8'
     }
 
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion(compose_version)
+    }
 }
 
 dependencies {
@@ -41,6 +47,11 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    implementation "androidx.ui:ui-framework:$compose_version"
+    implementation "androidx.ui:ui-layout:$compose_version"
+    implementation "androidx.ui:ui-material:$compose_version"
+    implementation "androidx.ui:ui-tooling:$compose_version"
 
     implementation "io.arrow-kt:arrow-syntax:$arrow_version"
 }
