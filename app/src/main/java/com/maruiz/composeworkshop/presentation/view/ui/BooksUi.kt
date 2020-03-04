@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.Composable
 import androidx.ui.core.Text
 import androidx.ui.foundation.AdapterList
-import androidx.ui.foundation.DrawImage
+import androidx.ui.foundation.SimpleImage
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.vector.DrawVector
@@ -74,7 +74,7 @@ private fun PaintGenres(
         Text(
             text = "- $it",
             style = typography.body1,
-            modifier = LayoutPadding(left = 8.dp)
+            modifier = LayoutPadding(start = 8.dp)
         )
     }
 }
@@ -87,7 +87,7 @@ private fun CoverImage(imageUrl: String) {
         modifier = LayoutHeight.Constrain(0.dp, 120.dp)
                 + LayoutAspectRatio(aspectRatio = ratio)
     ) {
-        DrawImage(image)
+        SimpleImage(image)
     }
 }
 
@@ -110,7 +110,7 @@ fun PainScore(score: Float, typography: Typography) {
     Column(modifier = LayoutPadding(16.dp)) {
         Row {
             Text(stringResource(R.string.score_title), modifier = LayoutGravity.Center)
-            Text(score.toString(), style = typography.h6, modifier = LayoutPadding(left = 8.dp))
+            Text(score.toString(), style = typography.h6, modifier = LayoutPadding(start = 8.dp))
         }
         Row {
             val starColor = Color(0xFFFCCB22)
