@@ -4,15 +4,16 @@ import androidx.annotation.DrawableRes
 import androidx.compose.Composable
 import androidx.ui.core.Text
 import androidx.ui.foundation.AdapterList
-import androidx.ui.foundation.SimpleImage
+import androidx.ui.foundation.Box
+import androidx.ui.foundation.Image
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
-import androidx.ui.graphics.vector.DrawVector
+import androidx.ui.graphics.vector.drawVector
 import androidx.ui.layout.*
 import androidx.ui.material.Divider
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.Surface
 import androidx.ui.material.Typography
-import androidx.ui.material.surface.Surface
 import androidx.ui.res.imageResource
 import androidx.ui.res.stringResource
 import androidx.ui.res.vectorResource
@@ -47,7 +48,7 @@ fun PaintBooks(book: BookPresentationModel, typography: Typography) {
             Row {
                 //Layout flexible can't be in nested function, needs to be in the same
                 //function than Row
-                Column(modifier = LayoutPadding(8.dp) + LayoutFlexible(1f)) {
+                Column(modifier = LayoutPadding(8.dp) + LayoutWeight(1f)) {
                     PaingGenreTitle(typography)
                     PaintGenres(book, typography)
                 }
@@ -87,7 +88,7 @@ private fun CoverImage(imageUrl: String) {
         modifier = LayoutHeight.Constrain(0.dp, 120.dp)
                 + LayoutAspectRatio(aspectRatio = ratio)
     ) {
-        SimpleImage(image)
+        Image(image)
     }
 }
 
@@ -131,12 +132,9 @@ fun PainScore(score: Float, typography: Typography) {
 @Composable
 fun SimpleVector(@DrawableRes id: Int, tint: Color = Color.Transparent) {
     val vector = vectorResource(id)
-    Container(
-        width = vector.defaultWidth,
-        height = vector.defaultHeight
-    ) {
-        DrawVector(vector, tint)
-    }
+    Box(
+        modifier = LayoutSize(vector.defaultWidth, vector.defaultHeight) + drawVector(vector, tint)
+    )
 }
 
 @Composable
