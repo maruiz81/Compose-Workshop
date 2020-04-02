@@ -7,8 +7,8 @@ buildscript {
     ext.viewmodel_version = '2.2.0'
     ext.koin_version = '2.1.0'
     ext.arrow_version = '0.10.4'
-    ext.compose_version = '0.1.0-dev07'
-    ext.gradle_plugin_version = '4.1.0-alpha03'
+    ext.compose_version = '0.1.0-dev08'
+    ext.gradle_plugin_version = '4.1.0-alpha04'
     ext.check_version = '0.28.0'
 
     repositories {
