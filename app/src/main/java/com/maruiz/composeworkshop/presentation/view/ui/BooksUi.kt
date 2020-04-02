@@ -3,13 +3,15 @@ package com.maruiz.composeworkshop.presentation.view.ui
 import androidx.annotation.DrawableRes
 import androidx.compose.Composable
 import androidx.ui.core.Modifier
+import androidx.ui.core.paint
 import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Box
 import androidx.ui.foundation.Image
 import androidx.ui.foundation.Text
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
-import androidx.ui.graphics.vector.drawVector
+import androidx.ui.graphics.ColorFilter
+import androidx.ui.graphics.vector.VectorPainter
 import androidx.ui.layout.*
 import androidx.ui.material.Divider
 import androidx.ui.material.MaterialTheme
@@ -41,7 +43,7 @@ fun PaintBooks(book: BookPresentationModel, typography: Typography) {
         modifier = Modifier.padding(8.dp)
     ) {
         Column {
-            Row(modifier = LayoutWidth.Fill) {
+            Row(modifier = Modifier.fillMaxWidth()) {
                 CoverImage(book.image)
                 MainSection(book.title, book.author, book.date, typography)
             }
@@ -109,10 +111,10 @@ private fun MainSection(
 
 @Composable
 fun PainScore(score: Float, typography: Typography) {
-    Column(modifier = LayoutPadding(16.dp)) {
+    Column(modifier = Modifier.padding(16.dp)) {
         Row {
-            Text(stringResource(R.string.score_title), modifier = LayoutGravity.Center)
-            Text(score.toString(), style = typography.h6, modifier = LayoutPadding(start = 8.dp))
+            Text(stringResource(R.string.score_title), modifier = Modifier.gravity(RowAlign.Center))
+            Text(score.toString(), style = typography.h6, modifier = Modifier.padding(start = 8.dp))
         }
         Row {
             val starColor = Color(0xFFFCCB22)
@@ -134,13 +136,14 @@ fun PainScore(score: Float, typography: Typography) {
 fun SimpleVector(@DrawableRes id: Int, tint: Color = Color.Transparent) {
     val vector = vectorResource(id)
     Box(
-        modifier = LayoutSize(vector.defaultWidth, vector.defaultHeight) + drawVector(vector, tint)
+        modifier = Modifier.preferredSize(vector.defaultWidth, vector.defaultHeight)
+                + Modifier.paint(VectorPainter(vector), colorFilter = ColorFilter.tint(tint))
     )
 }
 
 @Composable
 private fun SynopsisSection(synopsis: String, typography: Typography) {
-    Text(synopsis, style = typography.body1, modifier = LayoutPadding(16.dp, 16.dp, 16.dp, 8.dp))
+    Text(synopsis, style = typography.body1, modifier = Modifier.padding(16.dp, 16.dp, 16.dp, 8.dp))
     Divider(color = Color.LightGray)
 }
 
