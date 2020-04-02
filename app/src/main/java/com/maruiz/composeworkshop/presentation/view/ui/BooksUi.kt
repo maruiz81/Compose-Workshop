@@ -2,10 +2,11 @@ package com.maruiz.composeworkshop.presentation.view.ui
 
 import androidx.annotation.DrawableRes
 import androidx.compose.Composable
-import androidx.ui.core.Text
+import androidx.ui.core.Modifier
 import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Box
 import androidx.ui.foundation.Image
+import androidx.ui.foundation.Text
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.vector.drawVector
@@ -27,7 +28,7 @@ import com.maruiz.composeworkshop.presentation.view.states.BooksState
 fun PaintList(booksState: BooksState) {
     MyAppTheme {
         AdapterList(data = booksState.books) { item ->
-            PaintBooks(item, MaterialTheme.typography())
+            PaintBooks(item, MaterialTheme.typography)
         }
     }
 }
@@ -37,7 +38,7 @@ fun PaintBooks(book: BookPresentationModel, typography: Typography) {
     Surface(
         shape = RoundedCornerShape(8.dp),
         elevation = 8.dp,
-        modifier = LayoutPadding(8.dp)
+        modifier = Modifier.padding(8.dp)
     ) {
         Column {
             Row(modifier = LayoutWidth.Fill) {
@@ -48,7 +49,7 @@ fun PaintBooks(book: BookPresentationModel, typography: Typography) {
             Row {
                 //Layout flexible can't be in nested function, needs to be in the same
                 //function than Row
-                Column(modifier = LayoutPadding(8.dp) + LayoutWeight(1f)) {
+                Column(modifier = Modifier.padding(8.dp) + Modifier.weight(1f)) {
                     PaingGenreTitle(typography)
                     PaintGenres(book, typography)
                 }
@@ -75,7 +76,7 @@ private fun PaintGenres(
         Text(
             text = "- $it",
             style = typography.body1,
-            modifier = LayoutPadding(start = 8.dp)
+            modifier = Modifier.padding(start = 8.dp)
         )
     }
 }
@@ -84,9 +85,9 @@ private fun PaintGenres(
 private fun CoverImage(imageUrl: String) {
     val image = imageResource(getImage(imageUrl))
     val ratio = image.width.toFloat() / image.height.toFloat()
-    Container(
-        modifier = LayoutHeight.Constrain(0.dp, 120.dp)
-                + LayoutAspectRatio(aspectRatio = ratio)
+    Box(
+        modifier = Modifier.preferredHeightIn(0.dp, 120.dp)
+                + Modifier.aspectRatio(ratio = ratio)
     ) {
         Image(image)
     }
@@ -99,7 +100,7 @@ private fun MainSection(
     date: String,
     typography: Typography
 ) {
-    Column(modifier = LayoutPadding(16.dp)) {
+    Column(modifier = Modifier.padding(16.dp)) {
         Text(title, style = typography.h5)
         Text(author, style = typography.h6)
         Text(date, style = typography.body1)
