@@ -2,6 +2,7 @@ package com.maruiz.composeworkshop.presentation.view.ui
 
 import androidx.annotation.DrawableRes
 import androidx.compose.Composable
+import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.core.paint
 import androidx.ui.foundation.AdapterList
@@ -13,6 +14,7 @@ import androidx.ui.graphics.Color
 import androidx.ui.graphics.ColorFilter
 import androidx.ui.graphics.vector.VectorPainter
 import androidx.ui.layout.*
+import androidx.ui.layout.RowScope.gravity
 import androidx.ui.material.Divider
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.Surface
@@ -113,7 +115,7 @@ private fun MainSection(
 fun PainScore(score: Float, typography: Typography) {
     Column(modifier = Modifier.padding(16.dp)) {
         Row {
-            Text(stringResource(R.string.score_title), modifier = Modifier.gravity(RowAlign.Center))
+            Text(stringResource(R.string.score_title), modifier = Modifier.gravity(Alignment.CenterVertically))
             Text(score.toString(), style = typography.h6, modifier = Modifier.padding(start = 8.dp))
         }
         Row {
