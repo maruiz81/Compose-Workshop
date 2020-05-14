@@ -42,19 +42,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel_version"
-
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-
-    implementation "androidx.ui:ui-framework:$compose_version"
-    implementation "androidx.ui:ui-layout:$compose_version"
-    implementation "androidx.ui:ui-material:$compose_version"
-    implementation "androidx.ui:ui-tooling:$compose_version"
-
-    implementation "io.arrow-kt:arrow-syntax:$arrow_version"
-
-    implementation "io.coil-kt:coil:0.10.1"
+    projectDependencies.each { dependency ->
+        implementation dependency.value
+    }
 }
