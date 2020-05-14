@@ -2,6 +2,8 @@ package com.maruiz.composeworkshop.presentation.view.ui
 
 import androidx.annotation.DrawableRes
 import androidx.compose.Composable
+import androidx.compose.Providers
+import androidx.compose.ambientOf
 import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.core.paint
@@ -27,17 +29,21 @@ import com.maruiz.composeworkshop.R
 import com.maruiz.composeworkshop.presentation.presentationmodel.BookPresentationModel
 import com.maruiz.composeworkshop.presentation.view.states.BooksState
 
+val Typography = ambientOf<Typography> { error("Typography not selected") }
+
 @Composable
 fun PaintList(booksState: BooksState) {
     MyAppTheme {
-        AdapterList(data = booksState.books) { item ->
-            PaintBooks(item, MaterialTheme.typography)
+        Providers(Typography provides MaterialTheme.typography) {
+            AdapterList(data = booksState.books) { item ->
+                PaintBooks(item)
+            }
         }
     }
 }
 
 @Composable
-fun PaintBooks(book: BookPresentationModel, typography: Typography) {
+fun PaintBooks(book: BookPresentationModel) {
     Surface(
         shape = RoundedCornerShape(8.dp),
         elevation = 8.dp,
@@ -46,39 +52,38 @@ fun PaintBooks(book: BookPresentationModel, typography: Typography) {
         Column {
             Row(modifier = Modifier.fillMaxWidth()) {
                 CoverImage(book.image)
-                MainSection(book.title, book.author, book.date, typography)
+                MainSection(book.title, book.author, book.date)
             }
-            SynopsisSection(book.shortSynopsis, typography)
+            SynopsisSection(book.shortSynopsis)
             Row {
                 //Layout flexible can't be in nested function, needs to be in the same
                 //function than Row
                 Column(modifier = Modifier.padding(8.dp) + Modifier.weight(1f)) {
-                    PaingGenreTitle(typography)
-                    PaintGenres(book, typography)
+                    PaingGenreTitle()
+                    PaintGenres(book)
                 }
-                PainScore(book.score, typography)
+                PainScore(book.score)
             }
         }
     }
 }
 
 @Composable
-private fun PaingGenreTitle(typography: Typography) {
+private fun PaingGenreTitle() {
     Text(
         stringResource(R.string.genres_title),
-        style = typography.h5
+        style = Typography.current.h5
     )
 }
 
 @Composable
 private fun PaintGenres(
-    it: BookPresentationModel,
-    typography: Typography
+    it: BookPresentationModel
 ) {
     it.genres.forEach {
         Text(
             text = "- $it",
-            style = typography.body1,
+            style = Typography.current.body1,
             modifier = Modifier.padding(start = 8.dp)
         )
     }
@@ -100,25 +105,29 @@ private fun CoverImage(imageUrl: String) {
 private fun MainSection(
     title: String,
     author: String,
-    date: String,
-    typography: Typography
+    date: String
 ) {
+    val typo = Typography.current
     Column(modifier = Modifier.padding(16.dp)) {
-        Text(title, style = typography.h5)
-        Text(author, style = typography.h6)
-        Text(date, style = typography.body1)
+        Text(title, style = typo.h5)
+        Text(author, style = typo.h6)
+        Text(date, style = typo.body1)
     }
 }
 
 @Composable
-fun PainScore(score: Float, typography: Typography) {
+fun PainScore(score: Float) {
     Column(modifier = Modifier.padding(16.dp)) {
         Row {
             Text(
                 stringResource(R.string.score_title),
                 modifier = Modifier.gravity(Alignment.CenterVertically)
             )
-            Text(score.toString(), style = typography.h6, modifier = Modifier.padding(start = 8.dp))
+            Text(
+                score.toString(),
+                style = Typography.current.h6,
+                modifier = Modifier.padding(start = 8.dp)
+            )
         }
         Row {
             val starColor = Color(0xFFFCCB22)
@@ -146,8 +155,12 @@ fun SimpleVector(@DrawableRes id: Int, tint: Color = Color.Transparent) {
 }
 
 @Composable
-private fun SynopsisSection(synopsis: String, typography: Typography) {
-    Text(synopsis, style = typography.body1, modifier = Modifier.padding(16.dp, 16.dp, 16.dp, 8.dp))
+private fun SynopsisSection(synopsis: String) {
+    Text(
+        synopsis,
+        style = Typography.current.body1,
+        modifier = Modifier.padding(16.dp, 16.dp, 16.dp, 8.dp)
+    )
     Divider(color = Color.LightGray)
 }
 
