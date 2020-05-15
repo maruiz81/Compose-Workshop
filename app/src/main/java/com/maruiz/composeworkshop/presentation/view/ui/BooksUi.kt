@@ -27,15 +27,14 @@ import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import com.maruiz.composeworkshop.R
 import com.maruiz.composeworkshop.presentation.presentationmodel.BookPresentationModel
-import com.maruiz.composeworkshop.presentation.view.states.BooksState
 
 val Typography = ambientOf<Typography> { error("Typography not selected") }
 
 @Composable
-fun PaintList(booksState: BooksState) {
+fun PaintList(books: List<BookPresentationModel>) {
     MyAppTheme {
         Providers(Typography provides MaterialTheme.typography) {
-            AdapterList(data = booksState.books) { item ->
+            AdapterList(data = books) { item ->
                 PaintBooks(item)
             }
         }
@@ -168,9 +167,7 @@ private fun SynopsisSection(synopsis: String) {
 @Composable
 fun preview() {
     PaintList(
-        BooksState(
-            previewBook()
-        )
+        previewBook()
     )
 }
 

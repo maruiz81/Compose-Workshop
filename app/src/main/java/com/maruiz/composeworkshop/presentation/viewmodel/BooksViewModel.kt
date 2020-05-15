@@ -8,14 +8,14 @@ import com.maruiz.composeworkshop.presentation.viewmodel.BaseViewModel
 
 class BooksViewModel(private val getBooks: GetBooks) : BaseViewModel() {
 
-    private val books = MutableLiveData<List<BookPresentationModel>>()
-    fun observeBooks(): LiveData<List<BookPresentationModel>> = books
+    private val _books = MutableLiveData<List<BookPresentationModel>>()
+    val books: LiveData<List<BookPresentationModel>> = _books
 
     fun requestBooks() =
         getBooks(Unit, viewModelScope) { it.fold(::handleFailure, ::handleSuccess) }
 
     private fun handleSuccess(books: List<BookModelDomainModel>) {
-        this.books.value =
+        _books.value =
             books.map {
                 BookPresentationModel(
                     it.title,
