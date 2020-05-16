@@ -8,12 +8,13 @@ buildscript {
         cardview_version = '1.0.0'
         viewmodel_version = '2.2.0'
         retrofit_version = '2.8.1'
-        coroutines_version = '1.3.3'
+        coroutines_version = '1.3.6'
         moshi_version = '1.9.2'
         koin_version = '2.1.5'
         compose_version = '0.1.0-dev11'
         arrow_version = '0.10.5'
-        coil_version = '0.9.5'
+        coil_version = '0.11.0'
+        coil_composable_version = '0.1.1'
 
         gradlePluginDependencies = [
                 gradlePlugin        : "com.android.tools.build:gradle:$gradle_plugin_version",
@@ -26,6 +27,7 @@ buildscript {
                 cardView         : "androidx.cardview:cardview:$cardview_version",
                 viewModel        : "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel_version",
                 coil             : "io.coil-kt:coil:$coil_version",
+                coilComposable   : "dev.chrisbanes.accompanist:accompanist-coil:$coil_composable_version",
                 composeLiveData  : "androidx.ui:ui-livedata:$compose_version",
                 composeLayout    : "androidx.ui:ui-layout:$compose_version",
                 composeMaterial  : "androidx.ui:ui-material:$compose_version",

@@ -9,7 +9,6 @@ import androidx.ui.core.Modifier
 import androidx.ui.core.paint
 import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Box
-import androidx.ui.foundation.Image
 import androidx.ui.foundation.Text
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
@@ -20,13 +19,13 @@ import androidx.ui.material.Divider
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.Surface
 import androidx.ui.material.Typography
-import androidx.ui.res.imageResource
 import androidx.ui.res.stringResource
 import androidx.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import com.maruiz.composeworkshop.R
 import com.maruiz.composeworkshop.presentation.presentationmodel.BookPresentationModel
+import dev.chrisbanes.accompanist.coil.CoilImage
 
 val Typography = ambientOf<Typography> { error("Typography not selected") }
 
@@ -90,13 +89,10 @@ private fun PaintGenres(
 
 @Composable
 private fun CoverImage(imageUrl: String) {
-    val image = imageResource(getImage(imageUrl))
-    val ratio = image.width.toFloat() / image.height.toFloat()
     Box(
-        modifier = Modifier.preferredHeightIn(0.dp, 120.dp)
-                + Modifier.aspectRatio(ratio = ratio)
+        modifier = Modifier.width(80.dp) + Modifier.height(124.dp)
     ) {
-        Image(image)
+        CoilImage(imageUrl)
     }
 }
 
@@ -158,7 +154,7 @@ private fun SynopsisSection(synopsis: String) {
     Text(
         synopsis,
         style = Typography.current.body1,
-        modifier = Modifier.padding(16.dp, 16.dp, 16.dp, 8.dp)
+        modifier = Modifier.padding(16.dp, 8.dp, 16.dp, 8.dp)
     )
     Divider(color = Color.LightGray)
 }
