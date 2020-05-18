@@ -1,6 +1,6 @@
 package com.maruiz.composeworkshop.domain.model
 
-class BookModelDomainModel(
+class BookDomainModel(
     val title: String = "",
     val author: String = "",
     val date: String,
