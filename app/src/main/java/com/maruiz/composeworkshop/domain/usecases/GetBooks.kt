@@ -3,13 +3,14 @@ package com.maruiz.composeworkshop.domain.usecases
 import arrow.core.Either
 import com.maruiz.composeworkshop.data.error.Failure
 import com.maruiz.composeworkshop.data.repository.BookRepository
-import com.maruiz.composeworkshop.domain.model.BookModelDomainModel
+import com.maruiz.composeworkshop.domain.model.BookDomainModel
 
-class GetBooks(private val bookRepository: BookRepository) {
-    operator fun invoke(onResult: (Either<Failure, List<BookModelDomainModel>>) -> Unit) {
-        onResult(bookRepository.getBooks().map { books ->
-            books.map {
-                BookModelDomainModel(
+class GetBooks(private val bookRepository: BookRepository) :
+    UseCase<List<BookDomainModel>, Unit>() {
+    override suspend fun run(params: Unit): Either<Failure, List<BookDomainModel>> =
+        bookRepository.getBooks().map { success ->
+            success.map {
+                BookDomainModel(
                     title = it.title,
                     author = it.author,
                     date = it.firstPublished,
@@ -19,6 +20,5 @@ class GetBooks(private val bookRepository: BookRepository) {
                     genres = it.genres
                 )
             }
-        })
-    }
+        }
 }

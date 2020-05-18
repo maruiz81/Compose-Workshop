@@ -1,0 +1,46 @@
+buildscript {
+    ext {
+        gradle_plugin_version = '4.1.0-alpha09'
+        kotlin_plugin_version = '1.3.72'
+        gradle_versions_plugin_version = '0.28.0'
+
+        appcompat_version = '1.1.0'
+        cardview_version = '1.0.0'
+        viewmodel_version = '2.2.0'
+        retrofit_version = '2.8.1'
+        coroutines_version = '1.3.6'
+        moshi_version = '1.9.2'
+        koin_version = '2.1.5'
+        compose_version = '0.1.0-dev11'
+        arrow_version = '0.10.5'
+        coil_version = '0.11.0'
+        coil_composable_version = '0.1.1'
+
+        gradlePluginDependencies = [
+                gradlePlugin        : "com.android.tools.build:gradle:$gradle_plugin_version",
+                kotlinPlugin        : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_plugin_version",
+                gradelVersionsPlugin: "com.github.ben-manes:gradle-versions-plugin:$gradle_versions_plugin_version",
+        ]
+
+        projectDependencies = [
+                appCompat        : "androidx.appcompat:appcompat:$appcompat_version",
+                cardView         : "androidx.cardview:cardview:$cardview_version",
+                viewModel        : "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel_version",
+                coil             : "io.coil-kt:coil:$coil_version",
+                coilComposable   : "dev.chrisbanes.accompanist:accompanist-coil:$coil_composable_version",
+                composeLiveData  : "androidx.ui:ui-livedata:$compose_version",
+                composeLayout    : "androidx.ui:ui-layout:$compose_version",
+                composeMaterial  : "androidx.ui:ui-material:$compose_version",
+                composeTooling   : "androidx.ui:ui-tooling:$compose_version",
+                retrofit         : "com.squareup.retrofit2:retrofit:$retrofit_version",
+                retrofitConverter: "com.squareup.retrofit2:converter-moshi:$retrofit_version",
+                retrofitMock     : "com.squareup.retrofit2:retrofit-mock:$retrofit_version",
+                moshi            : "com.squareup.moshi:moshi:$moshi_version",
+                moshiKotlin      : "com.squareup.moshi:moshi-kotlin:$moshi_version",
+                koinAndroid      : "org.koin:koin-android:$koin_version",
+                koinViewModel    : "org.koin:koin-androidx-viewmodel:$koin_version",
+                coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version",
+                arrow            : "io.arrow-kt:arrow-syntax:$arrow_version",
+        ]
+    }
+}
