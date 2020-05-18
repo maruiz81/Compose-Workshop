@@ -177,7 +177,8 @@ private fun previewBook() =
         ),
         BookPresentationModel(
             "Odissey", "Homer", "-2000",
-            shortSynopsis = "Bla bla bla", score = 4f,
+            shortSynopsis = "Bla bla bla",
+            score = 4f,
             genres = listOf("genre 1", "genre 2")
         )
     )
