@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        gradle_plugin_version = '4.1.0-alpha10'
+        gradle_plugin_version = '4.2.0-alpha01'
         kotlin_plugin_version = '1.3.72'
         gradle_versions_plugin_version = '0.28.0'
 
@@ -11,7 +11,7 @@ buildscript {
         coroutines_version = '1.3.6'
         moshi_version = '1.9.2'
         koin_version = '2.1.5'
-        compose_version = '0.1.0-dev12'
+        compose_version = '0.1.0-dev13'
         arrow_version = '0.10.5'
         coil_version = '0.11.0'
         coil_composable_version = '0.1.3'
