@@ -1,8 +1,5 @@
 package com.maruiz.composeworkshop.presentation.presentationmodel
 
-import androidx.compose.Model
-
-@Model
 data class BookPresentationModel(
     val title: String = "",
     val author: String = "",
