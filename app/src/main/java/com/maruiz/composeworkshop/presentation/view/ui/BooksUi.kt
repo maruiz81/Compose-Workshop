@@ -7,9 +7,9 @@ import androidx.compose.ambientOf
 import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.core.paint
-import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Box
 import androidx.ui.foundation.Text
+import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.ColorFilter
@@ -33,9 +33,9 @@ val Typography = ambientOf<Typography> { error("Typography not selected") }
 fun PaintList(books: List<BookPresentationModel>) {
     MyAppTheme {
         Providers(Typography provides MaterialTheme.typography) {
-            AdapterList(data = books) { item ->
+            LazyColumnItems(items = books, itemContent = { item ->
                 PaintBooks(item)
-            }
+            })
         }
     }
 }
@@ -57,7 +57,7 @@ fun PaintBooks(book: BookPresentationModel) {
                 //Layout flexible can't be in nested function, needs to be in the same
                 //function than Row
                 Column(modifier = Modifier.padding(8.dp) + Modifier.weight(1f)) {
-                    PaingGenreTitle()
+                    PaintGenreTitle()
                     PaintGenres(book)
                 }
                 PainScore(book.score)
@@ -67,7 +67,7 @@ fun PaintBooks(book: BookPresentationModel) {
 }
 
 @Composable
-private fun PaingGenreTitle() {
+private fun PaintGenreTitle() {
     Text(
         stringResource(R.string.genres_title),
         style = Typography.current.h5
@@ -89,11 +89,7 @@ private fun PaintGenres(
 
 @Composable
 private fun CoverImage(imageUrl: String) {
-    Box(
-        modifier = Modifier.width(80.dp) + Modifier.height(124.dp)
-    ) {
-        CoilImage(imageUrl)
-    }
+    CoilImage(data = imageUrl, modifier = Modifier.width(80.dp) + Modifier.height(124.dp))
 }
 
 @Composable
