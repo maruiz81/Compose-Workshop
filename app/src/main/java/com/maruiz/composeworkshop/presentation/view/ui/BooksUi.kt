@@ -1,28 +1,28 @@
 package com.maruiz.composeworkshop.presentation.view.ui
 
 import androidx.annotation.DrawableRes
-import androidx.compose.Composable
-import androidx.compose.Providers
-import androidx.compose.ambientOf
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.core.paint
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.ColorFilter
-import androidx.ui.graphics.vector.VectorPainter
-import androidx.ui.layout.*
-import androidx.ui.material.Divider
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Surface
-import androidx.ui.material.Typography
-import androidx.ui.res.stringResource
-import androidx.ui.res.vectorResource
+import androidx.compose.foundation.Box
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Typography
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Providers
+import androidx.compose.runtime.ambientOf
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.VectorPainter
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 import com.maruiz.composeworkshop.R
 import com.maruiz.composeworkshop.presentation.presentationmodel.BookPresentationModel
 import dev.chrisbanes.accompanist.coil.CoilImage
@@ -33,7 +33,7 @@ val Typography = ambientOf<Typography> { error("Typography not selected") }
 fun PaintList(books: List<BookPresentationModel>) {
     MyAppTheme {
         Providers(Typography provides MaterialTheme.typography) {
-            LazyColumnItems(items = books, itemContent = { item ->
+            LazyColumnFor(items = books, itemContent = { item ->
                 PaintBooks(item)
             })
         }
@@ -56,7 +56,7 @@ fun PaintBooks(book: BookPresentationModel) {
             Row {
                 //Layout flexible can't be in nested function, needs to be in the same
                 //function than Row
-                Column(modifier = Modifier.padding(8.dp) + Modifier.weight(1f)) {
+                Column(modifier = Modifier.padding(8.dp).then(Modifier.weight(1f))) {
                     PaintGenreTitle()
                     PaintGenres(book)
                 }
@@ -89,7 +89,7 @@ private fun PaintGenres(
 
 @Composable
 private fun CoverImage(imageUrl: String) {
-    CoilImage(data = imageUrl, modifier = Modifier.width(80.dp) + Modifier.height(124.dp))
+    CoilImage(data = imageUrl, modifier = Modifier.width(80.dp).then(Modifier.height(124.dp)))
 }
 
 @Composable
@@ -141,7 +141,7 @@ fun SimpleVector(@DrawableRes id: Int, tint: Color = Color.Transparent) {
     val vector = vectorResource(id)
     Box(
         modifier = Modifier.preferredSize(vector.defaultWidth, vector.defaultHeight)
-                + Modifier.paint(VectorPainter(vector), colorFilter = ColorFilter.tint(tint))
+            .then(Modifier.paint(VectorPainter(vector), colorFilter = ColorFilter.tint(tint)))
     )
 }
 

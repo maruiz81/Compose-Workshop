@@ -3,9 +3,9 @@ package com.maruiz.composeworkshop.presentation.view.activities
 import BooksViewModel
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.getValue
-import androidx.ui.core.setContent
-import androidx.ui.livedata.observeAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.platform.setContent
 import com.maruiz.composeworkshop.presentation.view.ui.PaintList
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
