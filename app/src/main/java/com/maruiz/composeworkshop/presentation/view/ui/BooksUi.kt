@@ -33,9 +33,9 @@ val Typography = ambientOf<Typography> { error("Typography not selected") }
 fun PaintList(books: List<BookPresentationModel>) {
     MyAppTheme {
         Providers(Typography provides MaterialTheme.typography) {
-            LazyColumnFor(items = books, itemContent = { item ->
+            LazyColumnFor(items = books) { item ->
                 PaintBooks(item)
-            })
+            }
         }
     }
 }
