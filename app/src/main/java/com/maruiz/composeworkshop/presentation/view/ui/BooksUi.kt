@@ -56,7 +56,7 @@ fun PaintBooks(book: BookPresentationModel) {
             Row {
                 //Layout flexible can't be in nested function, needs to be in the same
                 //function than Row
-                Column(modifier = Modifier.padding(8.dp).then(Modifier.weight(1f))) {
+                Column(modifier = Modifier.padding(8.dp).weight(1f)) {
                     PaintGenreTitle()
                     PaintGenres(book)
                 }
@@ -141,7 +141,7 @@ fun SimpleVector(@DrawableRes id: Int, tint: Color = Color.Transparent) {
     val vector = vectorResource(id)
     Box(
         modifier = Modifier.preferredSize(vector.defaultWidth, vector.defaultHeight)
-            .then(Modifier.paint(VectorPainter(vector), colorFilter = ColorFilter.tint(tint)))
+            .paint(VectorPainter(vector), colorFilter = ColorFilter.tint(tint))
     )
 }
 
