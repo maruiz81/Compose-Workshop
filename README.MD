@@ -1,6 +1,6 @@
 # Hands-on with Jetpack Compose
 
-[See the article]()
+[See the article](https://medium.com/@maruiz81/hands-on-with-jetpack-compose-51ed1747f3ac?sk=208966f69af2fe58b24843040e8417b5)
 
 This is a pet project where is put in practise some of the concepts of Jetpack compose.
 
