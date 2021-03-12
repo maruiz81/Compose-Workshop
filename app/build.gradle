@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 30
@@ -33,16 +32,16 @@ android {
     buildFeatures {
         compose true
     }
+
     composeOptions {
-        kotlinCompilerVersion(kotlin_plugin_version)
-        kotlinCompilerExtensionVersion(compose_version)
+        def config = rootProject.extensions.getByName("ext")
+        kotlinCompilerExtensionVersion config["compose_version"]
     }
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = "1.8"
-        freeCompilerArgs += ["-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check"]
     }
 }
 

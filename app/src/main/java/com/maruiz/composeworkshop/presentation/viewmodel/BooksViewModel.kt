@@ -1,10 +1,11 @@
+package com.maruiz.composeworkshop.presentation.viewmodel
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.maruiz.composeworkshop.domain.model.BookDomainModel
 import com.maruiz.composeworkshop.domain.usecases.GetBooks
 import com.maruiz.composeworkshop.presentation.presentationmodel.BookPresentationModel
-import com.maruiz.composeworkshop.presentation.viewmodel.BaseViewModel
 
 class BooksViewModel(private val getBooks: GetBooks) : BaseViewModel() {
 

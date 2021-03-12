@@ -1,12 +1,12 @@
 package com.maruiz.composeworkshop.presentation.view.activities
 
-import BooksViewModel
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.platform.setContent
 import com.maruiz.composeworkshop.presentation.view.ui.PaintList
+import com.maruiz.composeworkshop.presentation.viewmodel.BooksViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

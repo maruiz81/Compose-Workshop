@@ -1,6 +1,6 @@
 package com.maruiz.composeworkshop.presentation.di
 
-import BooksViewModel
+import com.maruiz.composeworkshop.presentation.viewmodel.BooksViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

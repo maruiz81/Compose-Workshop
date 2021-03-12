@@ -1,40 +1,38 @@
 package com.maruiz.composeworkshop.presentation.view.ui
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Typography
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
-import androidx.compose.runtime.ambientOf
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.VectorPainter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import com.maruiz.composeworkshop.R
 import com.maruiz.composeworkshop.presentation.presentationmodel.BookPresentationModel
 import dev.chrisbanes.accompanist.coil.CoilImage
 
-val Typography = ambientOf<Typography> { error("Typography not selected") }
+val Typography = compositionLocalOf<Typography> { error("Typography not selected") }
 
 @Composable
 fun PaintList(books: List<BookPresentationModel>) {
     MyAppTheme {
-        Providers(Typography provides MaterialTheme.typography) {
-            LazyColumnFor(items = books) { item ->
-                PaintBooks(item)
+        CompositionLocalProvider(Typography provides MaterialTheme.typography) {
+            LazyColumn {
+                items(books) { book ->
+                    PaintBooks(book)
+                }
             }
         }
     }
@@ -56,7 +54,11 @@ fun PaintBooks(book: BookPresentationModel) {
             Row {
                 //Layout flexible can't be in nested function, needs to be in the same
                 //function than Row
-                Column(modifier = Modifier.padding(8.dp).weight(1f)) {
+                Column(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .weight(1f)
+                ) {
                     PaintGenreTitle()
                     PaintGenres(book)
                 }
@@ -89,7 +91,13 @@ private fun PaintGenres(
 
 @Composable
 private fun CoverImage(imageUrl: String) {
-    CoilImage(data = imageUrl, modifier = Modifier.width(80.dp).then(Modifier.height(124.dp)))
+    CoilImage(
+        data = imageUrl,
+        contentDescription = "Book cover",
+        modifier = Modifier
+            .width(80.dp)
+            .then(Modifier.height(124.dp))
+    )
 }
 
 @Composable
@@ -111,8 +119,8 @@ fun PainScore(score: Float) {
     Column(modifier = Modifier.padding(16.dp)) {
         Row {
             Text(
-                stringResource(R.string.score_title),
-                modifier = Modifier.gravity(Alignment.CenterVertically)
+                text = stringResource(R.string.score_title),
+                textAlign = TextAlign.Center
             )
             Text(
                 score.toString(),
@@ -138,10 +146,10 @@ fun PainScore(score: Float) {
 //TODO This is a temporal solution to import vector. I hope this is fixed in future versions
 @Composable
 fun SimpleVector(@DrawableRes id: Int, tint: Color = Color.Transparent) {
-    val vector = vectorResource(id)
-    Box(
-        modifier = Modifier.preferredSize(vector.defaultWidth, vector.defaultHeight)
-            .paint(VectorPainter(vector), colorFilter = ColorFilter.tint(tint))
+    Icon(
+        painter = painterResource(id = id),
+        contentDescription = null, // decorative element
+        tint = tint
     )
 }
 
